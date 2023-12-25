@@ -8,35 +8,38 @@ import { MainLayout } from './layouts'
 import { Daily, Home, Hourly, Map, NotFound, Today } from './pages'
 import { getThemeMode } from './theme'
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <MainLayout />,
-        errorElement: <NotFound />,
-        children: [
-            {
-                index: true,
-                element: <Home />,
-            },
-            {
-                path: '/today',
-                element: <Today />,
-            },
-            {
-                path: '/hourly',
-                element: <Hourly />,
-            },
-            {
-                path: '/daily',
-                element: <Daily />,
-            },
-            {
-                path: '/map',
-                element: <Map />,
-            },
-        ],
-    },
-])
+const router = createBrowserRouter(
+    [
+        {
+            path: '/',
+            element: <MainLayout />,
+            errorElement: <NotFound />,
+            children: [
+                {
+                    index: true,
+                    element: <Home />,
+                },
+                {
+                    path: '/today',
+                    element: <Today />,
+                },
+                {
+                    path: '/hourly',
+                    element: <Hourly />,
+                },
+                {
+                    path: '/daily',
+                    element: <Daily />,
+                },
+                {
+                    path: '/map',
+                    element: <Map />,
+                },
+            ],
+        },
+    ],
+    { basename: '/weather-app' }
+)
 
 function App() {
     const { darkMode } = useContext(DarkModeContext)
