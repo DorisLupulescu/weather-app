@@ -2,10 +2,10 @@ import './App.css'
 
 import { ThemeProvider } from '@mui/material'
 import { useContext, useMemo } from 'react'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { DarkModeContext } from './context/DarkModeContext'
 import { MainLayout } from './layouts'
-import { Daily, Home, Hourly, Map, NotFound, Today } from './pages'
+import { Daily, Hourly, Map, NotFound, Today } from './pages'
 import { getThemeMode } from './theme'
 
 const router = createBrowserRouter(
@@ -17,7 +17,7 @@ const router = createBrowserRouter(
             children: [
                 {
                     index: true,
-                    element: <Home />,
+                    element: <Navigate to="/today" replace />,
                 },
                 {
                     path: '/today',
