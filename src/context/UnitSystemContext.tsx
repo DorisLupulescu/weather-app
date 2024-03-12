@@ -16,7 +16,6 @@ const UnitSystemProvider = ({ children }: { children: ReactNode }) => {
     const [unit, setUnit] = useState<UnitSystemType>('metric')
 
     const toggleUnit = (selected: UnitSystemType) => {
-        console.log('vine ceva aici', selected)
         setUnit(selected)
     }
 

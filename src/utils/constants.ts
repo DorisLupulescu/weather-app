@@ -21,4 +21,14 @@ const MENU_ITEMS = [
     },
 ]
 
-export { MENU_ITEMS }
+const UNIT_SYMBOL = {
+    imperial: '°F',
+    metric: '°C',
+}
+
+const UNIT_DISTANCE = {
+    imperial: 'miles/hour',
+    metric: 'm/sec',
+}
+
+export { MENU_ITEMS, UNIT_DISTANCE, UNIT_SYMBOL }
