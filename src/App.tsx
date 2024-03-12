@@ -3,10 +3,11 @@ import './App.css'
 import { ThemeProvider } from '@mui/material'
 import { useContext, useMemo } from 'react'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { getThemeMode } from '../src/styles/theme/Theme'
 import { DarkModeContext } from './context/DarkModeContext'
+import { UnitSystemProvider } from './context/UnitSystemContext'
 import { MainLayout } from './layouts'
 import { Daily, Hourly, Map, NotFound, Today } from './pages'
-import { getThemeMode } from './theme'
 
 const router = createBrowserRouter(
     [
@@ -48,7 +49,9 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <RouterProvider router={router} />
+            <UnitSystemProvider>
+                <RouterProvider router={router} />
+            </UnitSystemProvider>
         </ThemeProvider>
     )
 }
