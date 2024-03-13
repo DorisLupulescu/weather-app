@@ -20,6 +20,7 @@ const Today = () => {
     )
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
+    const [displayUnit, setDisplayUnit] = useState(unit)
 
     useEffect(() => {
         axios
@@ -30,6 +31,7 @@ const Today = () => {
                 const formattedWeather = formatWeather(res.data)
                 setWeather(formattedWeather)
                 setIsLoaded(true)
+                setDisplayUnit(unit)
             })
             .catch((error) => {
                 if (error.response) {
@@ -58,11 +60,12 @@ const Today = () => {
 
                 <div id="weather-details">
                     <p id="temperature">
-                        {weather.temperature} {UNIT_SYMBOL[unit]}
+                        {weather.temperature} {UNIT_SYMBOL[displayUnit]}
                     </p>
 
                     <p>
-                        Feels like {weather.feelsLike} {UNIT_SYMBOL[unit]}
+                        Feels like {weather.feelsLike}{' '}
+                        {UNIT_SYMBOL[displayUnit]}
                     </p>
                     <p>{weather.description}</p>
                 </div>
@@ -89,7 +92,7 @@ const Today = () => {
                     </p>
                     <p>
                         Wind Speed <AirIcon /> {weather.windSpeed}
-                        {UNIT_DISTANCE[unit]}
+                        {UNIT_DISTANCE[displayUnit]}
                     </p>
                 </div>
             </WeatherWrapper>
