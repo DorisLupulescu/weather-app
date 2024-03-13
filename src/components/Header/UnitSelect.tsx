@@ -1,9 +1,9 @@
-import ThermostatIcon from '@mui/icons-material/Thermostat'
 import { SelectChangeEvent } from '@mui/material'
 import { useContext } from 'react'
 import { UnitSystemContext } from '../../context/UnitSystemContext'
 import { UnitSystemType } from '../../utils/types'
 import Select, { IOptions } from '../Select'
+import { UnitIcon } from './styles'
 
 const unitOptions: IOptions[] = [
     { value: 'metric', label: '°C' },
@@ -18,7 +18,7 @@ const UnitSelect = () => {
     }
     return (
         <>
-            <ThermostatIcon />
+            <UnitIcon />
             <Select
                 value={unit}
                 defaultValue={unit}
