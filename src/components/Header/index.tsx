@@ -10,7 +10,7 @@ const Header = () => {
     const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
 
     return (
-        <AppBar position="sticky" color="default">
+        <AppBar position="fixed" color="default">
             <Toolbar>
                 <SearchWrapper>
                     <Tooltip title="Search location not available yet">
