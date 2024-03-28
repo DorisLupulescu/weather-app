@@ -1,31 +1,17 @@
 import moment from 'moment'
+import { UNIT_DISTANCE, UNIT_SYMBOL } from '../../utils/constants'
+import { UnitSystemType } from '../../utils/types'
 import {
     weatherConditions,
     weatherConditionsTimed,
     weatherPatterns,
 } from '../../utils/weatherPatterns'
-import { ICurrentWeather } from './interfaces'
+import { IWeatherValues } from './interfaces'
 
-export const initializeEmptyWeather = (): ICurrentWeather => {
-    const weatherToday: ICurrentWeather = {
-        location: '',
-        date: new Date().toLocaleString(),
-        sunrise: new Date().toLocaleString(),
-        sunset: new Date().toLocaleString(),
-        visibility: 0,
-        windSpeed: 0,
-        humidity: 0,
-        feelsLike: 0,
-        temperature: 0,
-        temperatureMax: 0,
-        temperatureMin: 0,
-        imagePath: 'sun.webp',
-        description: '',
-    }
-    return weatherToday
-}
-
-export const formatWeather = (weatherRaw: any): ICurrentWeather => {
+export const formatWeather = (
+    weatherRaw: any,
+    unit: UnitSystemType
+): IWeatherValues => {
     let imagePath = ''
     let date = new Date(weatherRaw.dt * 1000).toLocaleString()
     date = moment().format('LLLL')
@@ -51,20 +37,23 @@ export const formatWeather = (weatherRaw: any): ICurrentWeather => {
     let sunset = new Date(weatherRaw.sys.sunset * 1000).toLocaleString()
     sunset = moment().format('LT')
 
-    const weatherToday: ICurrentWeather = {
+    const weatherToday: IWeatherValues = {
         location: weatherRaw.name,
         date,
         sunrise,
         sunset,
-        visibility: weatherRaw.visibility,
-        windSpeed: weatherRaw.wind.speed,
-        humidity: weatherRaw.main.humidity,
+        visibility: `${weatherRaw.visibility} m`,
+        windSpeed: `${weatherRaw.wind.speed} ${UNIT_DISTANCE[unit]}`,
+        humidity: `${weatherRaw.main.humidity} %`,
         feelsLike: Math.round(weatherRaw.main.feels_like),
         temperature: Math.round(weatherRaw.main.temp),
-        temperatureMax: Math.round(weatherRaw.temp_max),
-        temperatureMin: Math.round(weatherRaw.temp_min),
+        temperatureMaxMin: `${Math.round(weatherRaw.main.temp_max)} ${
+            UNIT_SYMBOL[unit]
+        } `,
         imagePath,
         description: weatherRaw.weather[0].description,
+        clouds: `${weatherRaw.clouds.all} %`,
+        pressure: `${weatherRaw.main.pressure} mb`,
     }
 
     return weatherToday
