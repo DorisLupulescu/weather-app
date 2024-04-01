@@ -3,7 +3,7 @@ import CloudIcon from '@mui/icons-material/Cloud'
 import NightsStayRoundedIcon from '@mui/icons-material/NightsStayRounded'
 import WaterDropIcon from '@mui/icons-material/WaterDrop'
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded'
-import { Box, CircularProgress, styled } from '@mui/material'
+import { Box, CircularProgress, Grid, styled } from '@mui/material'
 
 const WeatherWrapper = styled(Box)`
     box-shadow: 0 0 0.75rem 0 rgba(0, 0, 0, 0.2);
@@ -12,6 +12,7 @@ const WeatherWrapper = styled(Box)`
     margin-top: 4rem;
     display: flex;
     font-size: large;
+    padding: 1.5rem;
 `
 
 const ImageWrapper = styled('img')`
@@ -42,11 +43,6 @@ const TemperatureDetails = styled('div')`
     flex: auto;
 `
 
-const WeatherDetails = styled('div')`
-    display: grid;
-    grid-template-columns: repeat(2, minmax(auto, 1fr));
-`
-
 const MainTemperature = styled('p')`
     font-size: xxx-large;
     padding-left: 3rem;
@@ -71,13 +67,14 @@ const Pressure = styled(CloseFullscreenIcon)`
     transform: rotate(-0.125turn);
 `
 
-const WeatherDetailsInfo = styled('div')``
-
-const WeatherDetailsValue = styled('div')``
-
+const GridDisplay = styled(Grid)`
+    display: flex;
+    align-items: center;
+`
 export {
     Clouds,
     ContentContainer,
+    GridDisplay,
     Humidity,
     ImageWrapper,
     MainTemperature,
@@ -86,8 +83,5 @@ export {
     Sunrise,
     Sunset,
     TemperatureDetails,
-    WeatherDetails,
-    WeatherDetailsInfo,
-    WeatherDetailsValue,
     WeatherWrapper,
 }
