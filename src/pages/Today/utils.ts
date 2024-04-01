@@ -14,7 +14,7 @@ export const formatWeather = (
 ): IWeatherValues => {
     let imagePath = ''
     let date = new Date(weatherRaw.dt * 1000).toLocaleString()
-    date = moment().format('LLLL')
+    date = moment().format('Do MMMM YYYY, HH:mm:ss a')
     const hours = new Date(weatherRaw.dt * 1000).getHours()
     const dayOrNight = hours > 6 && hours < 19 ? 'Day' : 'Night'
     const mainCondition = weatherRaw.weather[0].main
@@ -33,9 +33,9 @@ export const formatWeather = (
     }
 
     let sunrise = new Date(weatherRaw.sys.sunrise * 1000).toLocaleString()
-    sunrise = moment().format('LT')
+    sunrise = sunrise.split(',')[1]
     let sunset = new Date(weatherRaw.sys.sunset * 1000).toLocaleString()
-    sunset = moment().format('LT')
+    sunset = sunset.split(',')[1]
 
     const weatherToday: IWeatherValues = {
         location: weatherRaw.name,
@@ -47,9 +47,9 @@ export const formatWeather = (
         humidity: `${weatherRaw.main.humidity} %`,
         feelsLike: Math.round(weatherRaw.main.feels_like),
         temperature: Math.round(weatherRaw.main.temp),
-        temperatureMaxMin: `${Math.round(weatherRaw.main.temp_max)} ${
-            UNIT_SYMBOL[unit]
-        } `,
+        temperatureMaxMin: `${Math.round(
+            weatherRaw.main.temp_max
+        )}/${Math.round(weatherRaw.main.temp_min)} ${UNIT_SYMBOL[unit]} `,
         imagePath,
         description: weatherRaw.weather[0].description,
         clouds: `${weatherRaw.clouds.all} %`,
