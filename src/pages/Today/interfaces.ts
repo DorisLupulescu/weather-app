@@ -1,7 +1,7 @@
 import { SvgIcon } from '@mui/material'
 
 export interface IWeatherLabel {
-    icon: typeof SvgIcon | string
+    icon: typeof SvgIcon
     info: string
     value: string | number
 }
