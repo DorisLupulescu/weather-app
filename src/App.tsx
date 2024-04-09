@@ -5,7 +5,6 @@ import { useContext, useMemo } from 'react'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { getThemeMode } from '../src/styles/theme/Theme'
 import { DarkModeContext } from './context/DarkModeContext'
-import { UnitSystemProvider } from './context/UnitSystemContext'
 import { MainLayout } from './layouts'
 import { Daily, Hourly, Map, NotFound, Today } from './pages'
 
@@ -49,9 +48,9 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <UnitSystemProvider>
-                <RouterProvider router={router} />
-            </UnitSystemProvider>
+            {/* <UnitSystemProvider> */}
+            <RouterProvider router={router} />
+            {/* </UnitSystemProvider> */}
         </ThemeProvider>
     )
 }

@@ -1,6 +1,7 @@
 import { SelectChangeEvent } from '@mui/material'
-import { useContext } from 'react'
-import { UnitSystemContext } from '../../context/UnitSystemContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { unitToggle } from '../../redux/slices/userSettings'
+import { RootState } from '../../redux/store'
 import { UnitSystemType } from '../../utils/types'
 import Select, { IOptions } from '../Select'
 import { UnitIcon } from './styles'
@@ -11,10 +12,13 @@ const unitOptions: IOptions[] = [
 ]
 
 const UnitSelect = () => {
-    const { unit, toggleUnit } = useContext(UnitSystemContext)
+    // const { unit, toggleUnit } = useContext(UnitSystemContext)
+    const unit = useSelector((state: RootState) => state.settings.unit)
+    const dispatch = useDispatch()
 
     const handleUnitChange = (selectedUnit: SelectChangeEvent) => {
-        toggleUnit(selectedUnit.target.value as UnitSystemType)
+        dispatch(unitToggle(selectedUnit.target.value as UnitSystemType))
+        // toggleUnit(selectedUnit.target.value as UnitSystemType)
     }
     return (
         <>

@@ -1,8 +1,9 @@
 import { Grid, Typography } from '@mui/material'
 import axios from 'axios'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import DisplayInfo from '../../components/DisplayInfo'
-import { UnitSystemContext } from '../../context/UnitSystemContext'
+import { RootState } from '../../redux/store'
 import { UNIT_SYMBOL } from '../../utils/constants'
 import { initialWeatherToday } from './constants'
 import { IWeatherLabel, IWeatherValues } from './interfaces'
@@ -18,11 +19,10 @@ import {
 import { formatWeather } from './utils'
 
 const Today = () => {
-    const { unit } = useContext(UnitSystemContext)
+    const unit = useSelector((state: RootState) => state.settings.unit)
     const [weather, setWeather] = useState<IWeatherValues>({} as IWeatherValues)
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-    const [displayUnit, setDisplayUnit] = useState(unit)
 
     useEffect(() => {
         axios
@@ -33,7 +33,6 @@ const Today = () => {
                 const formattedWeather = formatWeather(res.data, unit)
                 setWeather(formattedWeather)
                 setIsLoaded(true)
-                setDisplayUnit(unit)
             })
             .catch((error) => {
                 if (error.response) {
@@ -78,14 +77,14 @@ const Today = () => {
                 <ImageWrapper src={weather.imagePath} alt="sunny" />
                 <TemperatureDetails>
                     <MainTemperature>
-                        {weather.temperature} {UNIT_SYMBOL[displayUnit]}
+                        {weather.temperature} {UNIT_SYMBOL[unit]}
                     </MainTemperature>
                     <Typography>
                         {weather.location} {weather.date}
                     </Typography>
                     <Typography>
                         Feels like {weather.feelsLike}
-                        {UNIT_SYMBOL[displayUnit]}
+                        {UNIT_SYMBOL[unit]}
                     </Typography>
                     <Typography>{weather.description}</Typography>
                 </TemperatureDetails>
