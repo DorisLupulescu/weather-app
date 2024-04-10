@@ -23,9 +23,9 @@ const UtilityWrapper = styled(Box)`
     display: flex;
 `
 
-const NavLink = styled(NavLinkRouter)(({ theme, bgColor }) => ({
+const NavLink = styled(NavLinkRouter)(({ theme, bgcolor }) => ({
     '&.active button': {
-        backgroundColor: theme.palette[bgColor].light,
+        backgroundColor: theme.palette[bgcolor].light,
     },
 }))
 

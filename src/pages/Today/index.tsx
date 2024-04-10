@@ -52,7 +52,7 @@ const Today = () => {
             const displayItem = getWeatherDisplayData(key)
 
             return (
-                <GridDisplay item xs={12} sm={6}>
+                <GridDisplay key={displayItem.info} item xs={12} sm={6}>
                     <DisplayInfo
                         Icon={displayItem.icon}
                         info={displayItem.info}

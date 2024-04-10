@@ -9,7 +9,7 @@ const Navigation = () => {
         () =>
             MENU_ITEMS.map((item, index) => (
                 <ListItem key={`menu-item-${item}-${index}`}>
-                    <NavLink bgColor={item.color} to={`${item.pageUrl}`}>
+                    <NavLink bgcolor={item.color} to={`${item.pageUrl}`}>
                         <NavigationButton color={item.color}>
                             {item.title}
                         </NavigationButton>

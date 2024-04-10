@@ -29,7 +29,9 @@ const Select = ({
             onChange={(selectedItem: any) => handleChange(selectedItem)}
         >
             {options.map((option) => (
-                <MenuItem value={option.value}>{option.label}</MenuItem>
+                <MenuItem key={option.label} value={option.value}>
+                    {option.label}
+                </MenuItem>
             ))}
         </SelectWrapper>
     )
