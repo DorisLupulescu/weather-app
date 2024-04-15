@@ -5,15 +5,16 @@ import WaterDropIcon from '@mui/icons-material/WaterDrop'
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded'
 import { Box, CircularProgress, Grid, styled } from '@mui/material'
 
-const WeatherWrapper = styled(Box)`
-    box-shadow: 0 0 0.75rem 0 rgba(0, 0, 0, 0.2);
-    width: 50rem;
-    height: 18rem;
-    margin-top: 4rem;
-    display: flex;
-    font-size: large;
-    padding: 1.5rem;
-`
+const WeatherWrapper = styled(Box)(({ theme }) => ({
+    boxShadow: theme.palette.boxShadow,
+    width: '50rem',
+    height: '18rem',
+    marginTop: '4rem',
+    display: 'flex',
+    fontSize: 'large',
+    padding: '1.5rem',
+    backgroundColor: theme.palette.boxColor,
+}))
 
 const ImageWrapper = styled('img')`
     width: 11rem;
@@ -41,6 +42,7 @@ const ContentContainer = styled('div')`
 
 const TemperatureDetails = styled('div')`
     flex: auto;
+    padding-left: 2rem;
 `
 
 const MainTemperature = styled('p')`

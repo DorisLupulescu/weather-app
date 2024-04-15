@@ -1,16 +1,16 @@
 import { Brightness4, Brightness7 } from '@mui/icons-material'
-import { AppBar, IconButton, Toolbar, Tooltip } from '@mui/material'
+import { IconButton, Toolbar, Tooltip } from '@mui/material'
 import { useContext } from 'react'
 import { DarkModeContext } from '../../context/DarkModeContext'
 import Navigation from './Navigation'
 import UnitSelect from './UnitSelect'
-import { SearchField, SearchWrapper, UtilityWrapper } from './styles'
+import { NavBar, SearchField, SearchWrapper, UtilityWrapper } from './styles'
 
 const Header = () => {
     const { darkMode, toggleDarkMode } = useContext(DarkModeContext)
 
     return (
-        <AppBar position="fixed" color="default">
+        <NavBar>
             <Toolbar>
                 <SearchWrapper>
                     <Tooltip title="Search location not available yet">
@@ -30,7 +30,7 @@ const Header = () => {
                     </IconButton>
                 </UtilityWrapper>
             </Toolbar>
-        </AppBar>
+        </NavBar>
     )
 }
 

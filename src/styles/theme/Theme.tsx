@@ -24,6 +24,16 @@ const getThemeMode = (mode: boolean) =>
                 main: '#f57c00',
                 dark: '#d3be9f36',
             },
+            background: {
+                default: mode ? '#3d4e5e' : '#f2f3f3',
+            },
+            text: {
+                primary: mode ? '#f2f3f3' : '#031425',
+            },
+            boxColor: mode ? '#031425' : '#f2f3f3',
+            boxShadow: mode
+                ? '0 0 0.75rem 0 rgb(24 21 21)'
+                : '0 0 0.75rem 0 rgba(0, 0, 0, 0.2)',
         },
     })
 

@@ -1,5 +1,6 @@
 import ThermostatIcon from '@mui/icons-material/Thermostat'
 import {
+    AppBar,
     Box,
     Button as ButtonMui,
     List as ListMui,
@@ -48,9 +49,17 @@ const SearchField = styled(TextField)`
     }
 `
 
+const NavBar = styled(AppBar)(({ theme }) => ({
+    position: 'fixed',
+    backgroundColor: theme.palette.boxColor,
+    backgroundImage: 'none',
+    color: theme.palette.text.primary,
+}))
+
 export {
     Button,
     List,
+    NavBar,
     NavLink,
     SearchField,
     SearchWrapper,
