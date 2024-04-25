@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material'
+import { Grid } from '@mui/material'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -14,6 +14,7 @@ import {
     MainTemperature,
     Spinner,
     TemperatureDetails,
+    TemperatureSpecifications,
     WeatherWrapper,
 } from './styles'
 import { formatWeather } from './utils'
@@ -79,14 +80,16 @@ const Today = () => {
                     <MainTemperature>
                         {weather.temperature} {UNIT_SYMBOL[unit]}
                     </MainTemperature>
-                    <Typography>
+                    <TemperatureSpecifications variant="subtitle1">
                         {weather.location} {weather.date}
-                    </Typography>
-                    <Typography>
+                    </TemperatureSpecifications>
+                    <TemperatureSpecifications variant="subtitle1">
                         Feels like {weather.feelsLike}
                         {UNIT_SYMBOL[unit]}
-                    </Typography>
-                    <Typography>{weather.description}</Typography>
+                    </TemperatureSpecifications>
+                    <TemperatureSpecifications variant="subtitle1">
+                        {weather.description}
+                    </TemperatureSpecifications>
                 </TemperatureDetails>
             </WeatherWrapper>
             <WeatherWrapper>

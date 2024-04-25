@@ -3,7 +3,7 @@ import CloudIcon from '@mui/icons-material/Cloud'
 import NightsStayRoundedIcon from '@mui/icons-material/NightsStayRounded'
 import WaterDropIcon from '@mui/icons-material/WaterDrop'
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded'
-import { Box, CircularProgress, Grid, styled } from '@mui/material'
+import { Box, CircularProgress, Grid, Typography, styled } from '@mui/material'
 
 const WeatherWrapper = styled(Box)(({ theme }) => ({
     boxShadow: theme.palette.boxShadow,
@@ -47,7 +47,12 @@ const TemperatureDetails = styled('div')`
 
 const MainTemperature = styled('p')`
     font-size: xxx-large;
-    padding-left: 3rem;
+    padding-left: 4rem;
+`
+
+const TemperatureSpecifications = styled(Typography)`
+    margin: 0.5rem;
+    padding-left: 1rem;
 `
 
 const Clouds = styled(CloudIcon)`
@@ -85,5 +90,6 @@ export {
     Sunrise,
     Sunset,
     TemperatureDetails,
+    TemperatureSpecifications,
     WeatherWrapper,
 }
