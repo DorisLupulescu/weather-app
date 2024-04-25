@@ -22,7 +22,7 @@ export const initialWeatherToday: IDisplayWeather = {
     },
     windSpeed: {
         icon: AirIcon,
-        info: 'Wind speed',
+        info: 'Wind',
         value: 0,
     },
     humidity: {

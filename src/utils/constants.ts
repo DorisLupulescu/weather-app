@@ -27,7 +27,7 @@ const UNIT_SYMBOL = {
 }
 
 const UNIT_DISTANCE = {
-    imperial: 'miles/hour',
+    imperial: 'miles/h',
     metric: 'm/sec',
 }
 
