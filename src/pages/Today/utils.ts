@@ -37,6 +37,10 @@ export const formatWeather = (
     let sunset = new Date(weatherRaw.sys.sunset * 1000).toLocaleString()
     sunset = sunset.split(',')[1]
 
+    const description =
+        weatherRaw.weather[0].description[0].toUpperCase() +
+        weatherRaw.weather[0].description.slice(1)
+
     const weatherToday: IWeatherValues = {
         location: weatherRaw.name,
         date,
@@ -51,7 +55,7 @@ export const formatWeather = (
             weatherRaw.main.temp_max
         )}/${Math.round(weatherRaw.main.temp_min)} ${UNIT_SYMBOL[unit]} `,
         imagePath,
-        description: weatherRaw.weather[0].description,
+        description,
         clouds: `${weatherRaw.clouds.all} %`,
         pressure: `${weatherRaw.main.pressure} mb`,
     }
