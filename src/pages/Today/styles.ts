@@ -3,7 +3,7 @@ import CloudIcon from '@mui/icons-material/Cloud'
 import NightsStayRoundedIcon from '@mui/icons-material/NightsStayRounded'
 import WaterDropIcon from '@mui/icons-material/WaterDrop'
 import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded'
-import { Box, CircularProgress, Grid, Typography, styled } from '@mui/material'
+import { Box, Grid, Skeleton, Typography, styled } from '@mui/material'
 
 const WeatherWrapper = styled(Box)(({ theme }) => ({
     boxShadow: theme.palette.boxShadow,
@@ -24,14 +24,6 @@ const ImageWrapper = styled('img')`
     padding: 2rem;
 `
 
-const Spinner = styled(CircularProgress)`
-    justify-content: center;
-    height: 95vh;
-    vertical-align: middle;
-    display: grid;
-    align-items: center;
-`
-
 const ContentContainer = styled('div')`
     height: 100vh;
     display: flex;
@@ -47,12 +39,19 @@ const TemperatureDetails = styled('div')`
 
 const MainTemperature = styled('p')`
     font-size: xxx-large;
-    padding-left: 4rem;
+    margin-left: 4rem;
+`
+
+const MainTemperatureLoader = styled(Skeleton)`
+    width: 10rem;
 `
 
 const TemperatureSpecifications = styled(Typography)`
     margin: 0.5rem;
     padding-left: 1rem;
+`
+const FeelsLikeLoader = styled(Skeleton)`
+    width: 5rem;
 `
 
 const Clouds = styled(CloudIcon)`
@@ -81,12 +80,13 @@ const GridDisplay = styled(Grid)`
 export {
     Clouds,
     ContentContainer,
+    FeelsLikeLoader,
     GridDisplay,
     Humidity,
     ImageWrapper,
     MainTemperature,
+    MainTemperatureLoader,
     Pressure,
-    Spinner,
     Sunrise,
     Sunset,
     TemperatureDetails,

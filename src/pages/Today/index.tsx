@@ -1,51 +1,31 @@
 import { Grid } from '@mui/material'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import DisplayInfo from '../../components/DisplayInfo'
-import { RootState } from '../../redux/store'
+import { fetchWeather } from '../../redux/slices/todayWeather'
+import { AppDispatch, RootState } from '../../redux/store'
 import { UNIT_SYMBOL } from '../../utils/constants'
 import { initialWeatherToday } from './constants'
-import { IWeatherLabel, IWeatherValues } from './interfaces'
+import { IWeatherLabel } from './interfaces'
 import {
     ContentContainer,
     GridDisplay,
     ImageWrapper,
     MainTemperature,
-    Spinner,
     TemperatureDetails,
     TemperatureSpecifications,
     WeatherWrapper,
 } from './styles'
-import { formatWeather } from './utils'
 
 const Today = () => {
     const unit = useSelector((state: RootState) => state.settings.unit)
-    const [weather, setWeather] = useState<IWeatherValues>({} as IWeatherValues)
-    const [error, setError] = useState(null)
-    const [isLoaded, setIsLoaded] = useState(false)
+    const { weather, error, loaded } = useSelector(
+        (state: RootState) => state.weather
+    )
+    const dispatch = useDispatch<AppDispatch>()
 
     useEffect(() => {
-        axios
-            .get(
-                `https://api.openweathermap.org/data/2.5/weather?lat=45.7537&lon=21.2257&units=${unit}&appid=354e28e030dab0e004f7986f2ab9b413`
-            )
-            .then((res) => {
-                const formattedWeather = formatWeather(res.data, unit)
-                setWeather(formattedWeather)
-                setIsLoaded(true)
-            })
-            .catch((error) => {
-                if (error.response) {
-                    console.log(error.response.status)
-                } else if (error.request) {
-                    console.log(error.request)
-                } else {
-                    console.log('Error', error.message)
-                }
-                setError(error)
-                setIsLoaded(true)
-            })
+        dispatch(fetchWeather(unit))
     }, [unit])
 
     const mapWeatherDetails = () => {
@@ -72,7 +52,7 @@ const Today = () => {
         }
     }
 
-    return isLoaded ? (
+    return (
         <ContentContainer>
             <WeatherWrapper>
                 <ImageWrapper src={weather.imagePath} alt="sunny" />
@@ -96,8 +76,6 @@ const Today = () => {
                 <Grid container>{mapWeatherDetails()}</Grid>
             </WeatherWrapper>
         </ContentContainer>
-    ) : (
-        <Spinner color="secondary" size="10rem" />
     )
 }
 
